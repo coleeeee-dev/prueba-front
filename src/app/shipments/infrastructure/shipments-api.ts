@@ -10,10 +10,7 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class ShipmentsApi {
   private http = inject(HttpClient);
-  private readonly base =
-  (environment as any).apiBase ??
-  (environment as any).apiBaseUrl ??
-  'http://localhost:4000';
+  private readonly base = environment.apiBaseUrl;
 
 
   listRecent(limit = 4) {
