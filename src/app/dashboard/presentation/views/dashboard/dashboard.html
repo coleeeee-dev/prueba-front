@@ -1,0 +1,43 @@
+<section class="wrap">
+  <header class="title">
+    <a href="https://sendifi.github.io/LandingPage/" target="_self" rel="noopener" aria-label="Ir a la landing">
+      <img src="https://files.catbox.moe/f3pdna.png" alt="SENDIFY" height="24" />
+    </a>
+    <div>
+      <h1>{{ 'dashboard.title' | translate }}</h1>
+      <small>{{ 'dashboard.subtitle' | translate }}</small>
+    </div>
+    <span class="spacer"></span>
+    <app-language-switcher></app-language-switcher>
+    <a mat-stroked-button color="primary" routerLink="/login" class="ml-2">{{ 'dashboard.goHome' | translate }}</a>
+  </header>
+
+  <h2 class="section">{{ 'dashboard.liveStats' | translate }}</h2>
+  <div class="kpi-grid">
+    @for (k of store.kpis(); track $index) { <app-kpi-card [kpi]="k" /> }
+  </div>
+
+  <h2 class="section">{{ 'dashboard.quickActions' | translate }}</h2>
+  <app-quick-actions />
+
+  <h2 class="section">{{ 'dashboard.recentShipments' | translate }}</h2>
+  <mat-card class="box"><app-recent-shipments-table [data]="store.recentShipments()" /></mat-card>
+
+  <h2 class="section">EPIC CARDS</h2>
+  <div class="epic-grid">
+    <app-epic-card icon="insights" [titleKey]="'dashboard.reports.title' | translate"
+                   [lines]="[
+        ('dashboard.reports.l1'|translate),
+        ('dashboard.reports.l2'|translate),
+        ('dashboard.reports.l3'|translate),
+        ('dashboard.reports.l4'|translate)
+      ]" />
+    <app-epic-card icon="api" [titleKey]="'dashboard.api.title' | translate"
+                   [lines]="[
+        ('dashboard.api.l1'|translate),
+        ('dashboard.api.l2'|translate),
+        ('dashboard.api.l3'|translate),
+        ('dashboard.api.l4'|translate)
+      ]" />
+  </div>
+</section>

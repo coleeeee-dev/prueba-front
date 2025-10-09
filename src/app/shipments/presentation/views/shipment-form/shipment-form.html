@@ -1,0 +1,145 @@
+<div class="page">
+  <!-- Header -->
+  <div class="page-head">
+    <a mat-stroked-button color="primary" routerLink="/dashboard">
+      <mat-icon>arrow_back</mat-icon>
+      {{ 'common.back' | translate }}
+    </a>
+    <div class="head-text">
+      <h1>{{ 'shipments.create.title' | translate }}</h1>
+      <small>{{ 'shipments.create.subtitle' | translate }}</small>
+    </div>
+    <span class="spacer"></span>
+    <div></div>
+  </div>
+
+  <div class="layout">
+    <div class="main">
+      <!-- Remitente -->
+      <mat-card class="section">
+        <div class="section-title"><mat-icon>account_circle</mat-icon> Datos del Remitente</div>
+        <form [formGroup]="form" class="grid">
+          <div formGroupName="sender" class="grid">
+            <mat-form-field appearance="fill">
+              <mat-label>Nombre completo *</mat-label>
+              <input matInput placeholder="Nombre del remitente" formControlName="name">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Teléfono</mat-label>
+              <input matInput placeholder="+51 999 123 456" formControlName="phone">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="col-2">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="email@empresa.com" formControlName="email">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="col-2">
+              <mat-label>Dirección completa</mat-label>
+              <input matInput placeholder="Dirección completa con referencias" formControlName="address">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="col-2">
+              <mat-label>Ciudad</mat-label>
+              <mat-select formControlName="city">
+                <mat-option *ngFor="let c of cities" [value]="c">{{ c }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </form>
+      </mat-card>
+
+      <!-- Destinatario -->
+      <mat-card class="section">
+        <div class="section-title"><mat-icon>person_pin_circle</mat-icon> Datos del Destinatario</div>
+        <form [formGroup]="form" class="grid">
+          <div formGroupName="recipient" class="grid">
+            <mat-form-field appearance="fill">
+              <mat-label>Nombre completo *</mat-label>
+              <input matInput placeholder="Nombre del destinatario" formControlName="name">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Teléfono</mat-label>
+              <input matInput placeholder="+51 999 123 456" formControlName="phone">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="col-2">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="cliente@email.com" formControlName="email">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="col-2">
+              <mat-label>Dirección completa</mat-label>
+              <input matInput placeholder="Dirección completa con referencias" formControlName="address">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="col-2">
+              <mat-label>Ciudad destino</mat-label>
+              <mat-select formControlName="city">
+                <mat-option *ngFor="let c of cities" [value]="c">{{ c }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <mat-checkbox formControlName="saveAsFrequent" class="mt-4">Guardar como cliente frecuente</mat-checkbox>
+        </form>
+      </mat-card>
+
+      <!-- Paquete -->
+      <mat-card class="section">
+        <div class="section-title"><mat-icon>inventory_2</mat-icon> Información del Paquete</div>
+        <form [formGroup]="form" class="grid">
+          <div formGroupName="pkg" class="grid">
+            <mat-form-field appearance="fill" class="col-2">
+              <mat-label>Descripción del contenido</mat-label>
+              <input matInput placeholder="Ej: Documentos, Ropa, Electrónicos" formControlName="description">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Peso (kg) *</mat-label>
+              <input matInput type="number" step="0.1" placeholder="0.5" formControlName="weightKg">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Dimensiones (cm)</mat-label>
+              <input matInput placeholder="20x15x10" formControlName="dims">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Valor declarado (S/.)</mat-label>
+              <input matInput type="number" step="0.1" placeholder="100.00" formControlName="declared">
+            </mat-form-field>
+          </div>
+        </form>
+      </mat-card>
+
+      <!-- Acciones -->
+      <div class="actions">
+        <button mat-flat-button color="primary" (click)="submit()" [disabled]="saving">
+          <mat-icon>local_shipping</mat-icon> Crear Envío
+        </button>
+        <button mat-stroked-button color="primary" (click)="cancel()">Cancelar</button>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="aside">
+      <mat-card class="aside-card">
+        <div class="aside-title">
+          <mat-icon>group</mat-icon> Clientes Frecuentes
+        </div>
+        <mat-divider></mat-divider>
+        <mat-nav-list>
+          <a mat-list-item *ngFor="let c of frequent" (click)="useFrequent(c)">
+            <div matListItemTitle>{{ c.name }}</div>
+            <div matListItemLine>{{ c.phone }}</div>
+            <div matListItemLine>{{ c.address }}</div>
+            <span class="add"><mat-icon>add</mat-icon></span>
+          </a>
+        </mat-nav-list>
+      </mat-card>
+    </aside>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+.kpi-card {
+  background: #121212;
+  border-radius: 16px;
+  padding: 8px 12px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.icon mat-icon {
+  font-size: 32px;
+  color: #ffc857; /* acento */
+}
+
+.info .label {
+  display: block;
+  color: #c1c1c1;
+  font-size: 12px;
+}
+
+.info .value {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.delta { font-weight: 700; }
+.delta.pos { color: #7bd88f; }
+.delta.neg { color: #ff6b6b; }

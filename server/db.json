@@ -1,0 +1,136 @@
+{
+  "shipments": [
+    {
+      "id": "1",
+      "code": "SND-001",
+      "client": "TechStore SA",
+      "destination": "Lima",
+      "status": "in_transit",
+      "dateISO": "2024-01-15",
+      "sender": "TechStore SA",
+      "recipient": "Juan Pérez",
+      "courier": "CourierExp",
+      "events": [
+        { "ts": "2024-01-15T10:30:00Z", "type": "registered",  "city": "Lima, Perú",      "desc": "Envío registrado en el sistema" },
+        { "ts": "2024-01-15T15:45:00Z", "type": "picked_up",   "city": "Lima, Perú",      "desc": "Paquete recogido por courier" },
+        { "ts": "2024-01-16T08:20:00Z", "type": "in_transit",  "city": "Terminal Lima",   "desc": "En camino a destino" }
+      ]
+    },
+    {
+      "id": "2",
+      "code": "SND-002",
+      "client": "Moda Express",
+      "destination": "Cusco",
+      "status": "delivered",
+      "dateISO": "2024-01-15",
+      "sender": "Moda Express",
+      "recipient": "Carlos Díaz",
+      "courier": "CourierExp",
+      "events": [
+        { "ts": "2024-01-15T07:10:00Z", "type": "registered",  "city": "Cusco, Perú",     "desc": "Envío registrado en el sistema" },
+        { "ts": "2024-01-15T12:00:00Z", "type": "picked_up",   "city": "Cusco, Perú",     "desc": "Paquete recogido por courier" },
+        { "ts": "2024-01-15T16:20:00Z", "type": "in_transit",  "city": "Cusco, Perú",     "desc": "En tránsito hacia destino" },
+        { "ts": "2024-01-15T18:20:00Z", "type": "delivered",   "city": "Cusco, Perú",     "desc": "Paquete entregado exitosamente" }
+      ]
+    },
+    {
+      "id": "3",
+      "code": "SND-003",
+      "client": "Electro Mundial",
+      "destination": "Arequipa",
+      "status": "in_route",
+      "dateISO": "2024-01-14",
+      "sender": "Electro Mundial",
+      "recipient": "Ana Torres",
+      "courier": "CourierExp",
+      "events": [
+        { "ts": "2024-01-14T08:00:00Z", "type": "registered",        "city": "Arequipa, Perú", "desc": "Envío registrado en el sistema" },
+        { "ts": "2024-01-14T12:30:00Z", "type": "picked_up",         "city": "Arequipa, Perú", "desc": "Paquete recogido por courier" },
+        { "ts": "2024-01-14T16:00:00Z", "type": "in_transit",        "city": "Arequipa, Perú", "desc": "En tránsito" },
+        { "ts": "2024-01-14T18:30:00Z", "type": "out_for_delivery",  "city": "Arequipa, Perú", "desc": "En reparto" }
+      ]
+    },
+    {
+      "id": "4",
+      "code": "SND-004",
+      "client": "Librería Central",
+      "destination": "Trujillo",
+      "status": "registered",
+      "dateISO": "2024-01-14",
+      "sender": "Librería Central",
+      "recipient": "María López",
+      "courier": "CourierExp",
+      "events": [
+        { "ts": "2024-01-14T09:10:00Z", "type": "registered", "city": "Trujillo, Perú", "desc": "Envío registrado en el sistema" }
+      ]
+    },
+
+    {
+      "notifications": [
+        {
+          "id": 1,
+          "title": "Retraso en envío SND-001",
+          "message": "El envío hacia Cusco presenta un retraso de 4 horas debido a condiciones climáticas.",
+          "code": "SND-001",
+          "dateISO": "2024-01-15T14:30:00Z",
+          "severity": "high",
+          "read": false
+        },
+        {
+          "id": 2,
+          "title": "Envío SND-002 entregado",
+          "message": "El paquete fue entregado exitosamente a Maria García en Arequipa.",
+          "code": "SND-002",
+          "dateISO": "2024-01-15T11:00:00Z",
+          "severity": "medium",
+          "read": false
+        },
+        {
+          "id": 3,
+          "title": "Actualización de estado SND-003",
+          "message": "El envío se encuentra en reparto local en Trujillo.",
+          "code": "SND-003",
+          "dateISO": "2024-01-15T09:40:00Z",
+          "severity": "low",
+          "read": true
+        }
+      ]
+    }
+
+  ],
+
+
+  "notifications": [
+    {
+      "id": 1,
+      "title": "Retraso en envío SND-001",
+      "message": "El envío hacia Cusco presenta un retraso de 4 horas debido a condiciones climáticas.",
+      "code": "SND-001",
+      "dateISO": "2024-01-15T14:30:00Z",
+      "severity": "high",
+      "read": false
+    },
+    {
+      "id": 2,
+      "title": "Envío SND-002 entregado",
+      "message": "El paquete fue entregado exitosamente a Maria García en Arequipa.",
+      "code": "SND-002",
+      "dateISO": "2024-01-15T11:00:00Z",
+      "severity": "medium",
+      "read": false
+    },
+    {
+      "id": 3,
+      "title": "Actualización de estado SND-003",
+      "message": "El envío se encuentra en reparto local en Trujillo.",
+      "code": "SND-003",
+      "dateISO": "2024-01-15T09:40:00Z",
+      "severity": "low",
+      "read": true
+    }
+  ]
+}
+
+
+
+

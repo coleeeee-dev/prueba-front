@@ -1,0 +1,47 @@
+<!-- HTML MEJORADO -->
+<section class="quote-container">
+  <!-- Header -->
+  <header class="quote-header">
+    <div class="header-content">
+      <a mat-stroked-button color="primary" routerLink="/dashboard">
+        <mat-icon>arrow_back</mat-icon> Volver
+      </a>
+      <h1 class="header-title">Cotizar Tarifas</h1>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="quote-main">
+    <!-- Formulario -->
+    <div class="quote-card form-card">
+      <div class="card-header">
+        <div class="card-icon">
+          <span class="icon">📦</span>
+        </div>
+        <div class="card-title">
+          <h2>Datos del Envío</h2>
+          <p>Completa la información para obtener tu cotización</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <app-quote-form></app-quote-form>
+      </div>
+    </div>
+
+    <!-- Resultado -->
+    <div class="quote-card result-card">
+      <div class="card-header">
+        <div class="card-icon">
+          <span class="icon">💰</span>
+        </div>
+        <div class="card-title">
+          <h2>Resultado</h2>
+          <p>Tu cotización estimada</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <app-quote-result></app-quote-result>
+      </div>
+    </div>
+  </div>
+</section>

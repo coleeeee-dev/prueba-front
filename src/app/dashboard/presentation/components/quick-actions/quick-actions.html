@@ -1,0 +1,29 @@
+<div class="grid">
+  <mat-card class="qa">
+    <button mat-stroked-button color="primary" [routerLink]="['/shipments/news']">
+      <mat-icon>add_circle</mat-icon> {{ 'dashboard.quick.create' | translate }}
+    </button>
+    <p>{{ 'dashboard.quick.create.desc' | translate }}</p>
+  </mat-card>
+
+  <mat-card class="qa">
+    <button mat-stroked-button color="primary" [routerLink]="['/tracking']">
+      <mat-icon>travel_explore</mat-icon> {{ 'dashboard.quick.track' | translate }}
+    </button>
+    <p>{{ 'dashboard.quick.track.desc' | translate }}</p>
+  </mat-card>
+
+  <mat-card class="qa">
+    <button mat-stroked-button color="primary" [routerLink]="['/pricing']">
+      <mat-icon>price_check</mat-icon> {{ 'dashboard.quick.quote' | translate }}
+    </button>
+    <p>{{ 'dashboard.quick.quote.desc' | translate }}</p>
+  </mat-card>
+
+  <mat-card class="qa">
+    <button mat-stroked-button color="primary" [routerLink]="['/notifications']">
+      <mat-icon>notifications</mat-icon> {{ 'dashboard.quick.notifications' | translate }}
+    </button>
+    <p>{{ 'dashboard.quick.notifications.desc' | translate }}</p>
+  </mat-card>
+</div>

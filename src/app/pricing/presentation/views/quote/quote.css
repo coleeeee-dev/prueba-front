@@ -1,0 +1,123 @@
+.quote-container {
+  min-height: 100vh;
+  padding: -1rem;
+  background: #1a1a1a;
+}
+
+.quote-header {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 2rem;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.btn-back {
+  padding: 0.6rem 1.2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.btn-icon {
+  font-size: 1.1rem;
+}
+
+.header-title {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.quote-main {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.quote-card {
+  background: #252525;
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 152, 0, 0.15);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon {
+  font-size: 1.3rem;
+}
+
+.card-title h2 {
+  color: #ff9800;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.2rem 0;
+}
+
+.card-title p {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.card-body {
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .quote-container {
+    padding: 1rem;
+  }
+
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .quote-card {
+    padding: 1.5rem;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

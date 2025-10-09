@@ -1,0 +1,129 @@
+{
+  "common": {
+    "back": "Volver",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "close": "Cerrar",
+    "search": "Buscar"
+  },
+  "dashboard": {
+    "title": "Dashboard SENDIFY",
+    "subtitle": "Gestiona tus envíos desde un lugar",
+    "goHome": "Volver al inicio",
+    "liveStats": "ESTADÍSTICAS EN VIVO",
+    "quickActions": "ACCIONES RÁPIDAS",
+    "recentShipments": "ENVÍOS RECIENTES",
+    "kpi": {
+      "activeShipments": "Envíos Activos",
+      "inTransit": "En Tránsito",
+      "deliveredToday": "Entregados Hoy",
+      "pendingAlerts": "Alertas Pendientes"
+    },
+    "quick": {
+      "create": "Crear Nuevo Envío",
+      "create.desc": "Registra envío con datos completos",
+      "track": "Rastrear Envío",
+      "track.desc": "Consulta estado de cualquier envío",
+      "quote": "Cotizar Tarifas",
+      "quote.desc": "Compara precios entre diferentes couriers",
+      "notifications": "Notificaciones",
+      "notifications.desc": "Gestiona alertas y configuración"
+    },
+    "reports": {
+      "title": "Reportes y Analítica",
+      "l1": "Reportes de desempeño",
+      "l2": "Exportación en CSV y PDF",
+      "l3": "Análisis de tiempos de entrega",
+      "l4": "Métricas de costos por período"
+    },
+    "api": {
+      "title": "API RESTful",
+      "l1": "POST /envíos - Crear envíos",
+      "l2": "GET /tracking - Consultar estados",
+      "l3": "GET /tarifas - Comparar precios",
+      "l4": "Documentación completa"
+    }
+  },
+  "shipment": {
+    "code": "Código",
+    "client": "Cliente",
+    "destination": "Destino",
+    "date": "Fecha",
+    "status": {
+      "title": "Estado",
+      "in_transit": "En tránsito",
+      "delivered": "Entregado",
+      "registered": "Registrado",
+      "in_route": "En reparto"
+    }
+  },
+  "shipments": {
+    "create": {
+      "title": "Crear Nuevo Envío",
+      "subtitle": "Registra un envío con datos completos del remitente y destinatario",
+      "sender": "Datos del Remitente",
+      "receiver": "Datos del Destinatario",
+      "package": "Información del Paquete",
+      "cta": "Crear Envío"
+    }
+  },
+  "pricing": {
+    "quote": {
+      "optimization": {
+        "title": "Optimización de Costos",
+        "desc": "Nuestro sistema compara automáticamente precios y tiempos de entrega para ayudarte a tomar la mejor decisión.",
+        "factors": {
+          "title": "Factores considerados:",
+          "f1": "Peso y dimensiones",
+          "f2": "Distancia entre ciudades",
+          "f3": "Tipo de servicio"
+        },
+        "benefits": {
+          "title": "Beneficios:",
+          "b1": "Ahorro promedio del 25%",
+          "b2": "Comparación en tiempo real",
+          "b3": "Selección optimizada"
+        }
+      },
+      "available": "OPCIONES DE ENVÍO DISPONIBLES",
+      "recommended": "Recomendado",
+      "selected": "Seleccionado",
+      "selected.ok": "Courier seleccionado exitosamente",
+      "proceed": {
+        "cta": "Proceder con este courier",
+        "confirm": "¡Entendido!"
+      },
+      "empty": "Realiza una cotización para ver las opciones disponibles.",
+      "time": {
+        "fast": "1-2 días hábiles",
+        "medium": "2-3 días hábiles",
+        "express": "24 horas",
+        "slow": "3-5 días hábiles"
+      },
+      "tags": {
+        "liveTracking": "Tracking tiempo real",
+        "insurance": "Seguro incluido",
+        "doorDelivery": "Entrega puerta",
+        "basicTracking": "Tracking básico",
+        "pickupPoint": "Punto recojo",
+        "nationalCoverage": "Cobertura nacional",
+        "express": "Express",
+        "premiumInsurance": "Seguro premium",
+        "photoProof": "Foto entrega",
+        "lowCost": "Precios económicos",
+        "webTracking": "Tracking web",
+        "localNetwork": "Red local"
+      }
+    }
+  },
+  "tracking": {
+    "title": "Rastreo de Envíos",
+    "code": "Código de seguimiento",
+    "code.placeholder": "Ej: SND-001",
+    "search": "Buscar",
+    "progress": "Barra de progreso",
+    "notFound": "No se encontró ningún envío con el código: {{code}}",
+    "tryAgain": "Intentar de nuevo"
+  }
+
+}

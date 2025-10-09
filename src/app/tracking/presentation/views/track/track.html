@@ -1,0 +1,127 @@
+<div class="page">
+  <!-- Header -->
+  <div class="page-head">
+    <a mat-stroked-button color="primary" routerLink="/dashboard">
+      <mat-icon>arrow_back</mat-icon> Volver
+    </a>
+    <div class="head-text">
+      <h1>Tracking de Envíos</h1>
+      <small>Consulta el estado de cualquier envío ingresando su código de seguimiento</small>
+    </div>
+  </div>
+
+  <!-- Buscador -->
+  <mat-card class="search">
+    <div class="search-title">Buscar Envío</div>
+    <form [formGroup]="form" (ngSubmit)="search()" class="search-row">
+      <mat-form-field appearance="fill" class="grow">
+        <mat-label>Código de seguimiento</mat-label>
+        <input matInput placeholder="Ej: SND-001, SND-002" formControlName="code" />
+      </mat-form-field>
+      <button mat-flat-button color="primary" type="submit">
+        <mat-icon>search</mat-icon> Buscar
+      </button>
+    </form>
+    <small class="hint">Códigos de prueba: SND-001, SND-002</small>
+  </mat-card>
+
+  <!-- ========================= -->
+  <!--  RESULTADO ENCONTRADO     -->
+  <!-- ========================= -->
+  <mat-card class="result" *ngIf="data() as d">
+    <div class="code-row">
+      <div>
+        <div class="label">Código de Envío</div>
+        <div class="code">{{ d.code }}</div>
+      </div>
+      <mat-chip-set>
+        <mat-chip [ngClass]="statusChipClass(d.status)">{{ d.status | titlecase }}</mat-chip>
+      </mat-chip-set>
+    </div>
+
+    <div class="grid-4">
+      <div>
+        <div class="muted">Remitente:</div>
+        <div class="strong">{{ d.sender }}</div>
+      </div>
+      <div>
+        <div class="muted">Destinatario:</div>
+        <div class="strong">{{ d.recipient }}</div>
+      </div>
+      <div>
+        <div class="muted">Destino:</div>
+        <div class="strong">{{ d.destination }}</div>
+      </div>
+      <div>
+        <div class="muted">Courier:</div>
+        <div class="strong">{{ d.courier }}</div>
+      </div>
+    </div>
+
+    <mat-divider class="sp"></mat-divider>
+
+    <div class="muted">BARRA DE PROGRESO</div>
+    <mat-progress-bar mode="determinate" [value]="progress()"></mat-progress-bar>
+    <div class="progress-label">{{ progress() }}% Completado</div>
+
+    <mat-divider class="sp"></mat-divider>
+
+    <div class="muted">TIMELINE DE ESTADOS</div>
+    <div class="timeline">
+      <div class="item" *ngFor="let e of events()">
+        <div class="dot"></div>
+        <div class="content">
+          <div class="title">{{ e.type | titlecase }}</div>
+          <div class="desc">{{ e.desc }}</div>
+          <div class="city">{{ e.city }}</div>
+        </div>
+        <div class="time">{{ e.ts | date:'dd MMM yyyy, h:mm a' }}</div>
+      </div>
+
+      <!-- Estados futuros (sombreados) -->
+      <div class="item pending" *ngIf="progress() < 80">
+        <div class="dot"></div>
+        <div class="content">
+          <div class="title">En Reparto</div>
+          <div class="desc">Salió para entrega</div>
+        </div>
+        <div class="time">Pendiente</div>
+      </div>
+      <div class="item pending" *ngIf="progress() < 100">
+        <div class="dot"></div>
+        <div class="content">
+          <div class="title">Entregado</div>
+          <div class="desc">Entrega finalizada</div>
+        </div>
+        <div class="time">Pendiente</div>
+      </div>
+    </div>
+  </mat-card>
+
+  <!-- ========================= -->
+  <!--  NO ENCONTRADO           -->
+  <!-- ========================= -->
+  <mat-card class="empty not-found-card" *ngIf="!data() && notFound() && !loading()">
+    <div class="empty-icon">
+      <mat-icon style="font-size:40px; width:40px; height:40px;">inventory_2</mat-icon>
+    </div>
+    <h3 class="empty-title">Envío no encontrado</h3>
+    <p class="empty-desc">
+      No se encontró ningún envío con el código:
+      <strong class="code-accent">{{ form.value.code || '—' }}</strong>
+    </p>
+    <p class="empty-hint">
+      Verifica que el código sea correcto e intenta nuevamente.
+    </p>
+    <button mat-flat-button class="retry-btn" (click)="form.reset(); notFound.set(false);">
+      Intentar de nuevo
+    </button>
+  </mat-card>
+
+  <!-- ========================= -->
+  <!--  CARGANDO                -->
+  <!-- ========================= -->
+  <mat-card class="empty loading-card" *ngIf="loading()">
+    <h3>Buscando…</h3>
+  </mat-card>
+</div>

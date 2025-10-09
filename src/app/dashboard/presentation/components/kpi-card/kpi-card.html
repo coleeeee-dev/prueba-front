@@ -1,0 +1,12 @@
+<mat-card class="kpi-card">
+  <div class="row">
+    <div class="icon"><mat-icon>{{ kpi.icon }}</mat-icon></div>
+    <div class="info">
+      <span class="label">{{ kpi.label | translate }}</span>
+      <span class="value">{{ kpi.value }}</span>
+    </div>
+    <div class="delta" [class.pos]="kpi.deltaPct>=0" [class.neg]="kpi.deltaPct<0">
+      {{ kpi.deltaPct >= 0 ? '+' : '' }}{{ kpi.deltaPct }}%
+    </div>
+  </div>
+</mat-card>

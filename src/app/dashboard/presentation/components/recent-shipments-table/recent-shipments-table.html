@@ -1,0 +1,33 @@
+<table mat-table [dataSource]="data" class="mat-elevation-z1 table">
+  <ng-container matColumnDef="code">
+    <th mat-header-cell *matHeaderCellDef>{{ 'shipment.code' | translate }}</th>
+    <td mat-cell *matCellDef="let r">{{ r.code }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="client">
+    <th mat-header-cell *matHeaderCellDef>{{ 'shipment.client' | translate }}</th>
+    <td mat-cell *matCellDef="let r">{{ r.client }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="destination">
+    <th mat-header-cell *matHeaderCellDef>{{ 'shipment.destination' | translate }}</th>
+    <td mat-cell *matCellDef="let r">{{ r.destination }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef>{{ 'shipment.status.title' | translate }}</th>
+    <td mat-cell *matCellDef="let r">
+      <mat-chip-set>
+        <mat-chip [ngClass]="r.status">{{ statusLabel(r.status) | translate }}</mat-chip>
+      </mat-chip-set>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef>{{ 'shipment.date' | translate }}</th>
+    <td mat-cell *matCellDef="let r">{{ r.dateISO | date:'yyyy-MM-dd' }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayed"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayed;"></tr>
+</table>

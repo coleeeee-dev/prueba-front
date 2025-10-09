@@ -1,0 +1,93 @@
+/* ---- Dark base ---- */
+:root { color-scheme: dark; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: #0b0b0b;   /* fondo negro */
+  color: #f2f2f2;        /* texto claro */
+  font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Links por defecto */
+a, a:visited { color: #7ab3ff; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ---- Angular Material quick dark ---- */
+.mat-mdc-card {
+  background: #1a1a1a !important;
+  color: #f0f0f0 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,.35);
+}
+
+/* Botones */
+.mdc-button,
+.mat-mdc-outlined-button,
+.mat-mdc-unelevated-button,
+.mat-mdc-raised-button {
+  --mdc-text-button-label-text-color: #e8e8e8;
+  --mdc-outlined-button-label-text-color: #e8e8e8;
+  --mdc-protected-button-label-text-color: #0b0b0b;
+}
+
+/* Tablas */
+table.mat-mdc-table { background: #141414; color: #eaeaea; width: 100%; }
+.mat-mdc-header-row { background: #1c1c1c; }
+.mat-mdc-header-cell { color: #c7c7c7; font-weight: 600; }
+.mat-mdc-row:nth-child(even) { background: #151515; }
+.mat-mdc-row:nth-child(odd)  { background: #101010; }
+.mat-mdc-cell { border-bottom-color: #2a2a2a; }
+.mat-mdc-header-cell { border-bottom-color: #2a2a2a; }
+
+/* Chips de estado */
+mat-chip.in_transit  { background: #2a3d6b !important; color: #e8f0ff !important; }
+mat-chip.delivered   { background: #1f6d2a !important; color: #eaffea !important; }
+mat-chip.registered  { background: #3a3a3a !important; color: #d9d9d9 !important; }
+mat-chip.in_route    { background: #0d4d40 !important; color: #d9fffb !important; }
+
+/* Titulares/secciones */
+h1, h2, h3, h4, h5 { color: #eaeaea; margin: 0 0 8px; }
+
+/* Separadores elegantes */
+.section {
+  letter-spacing: .3px;
+  text-transform: none;
+}
+
+/* Botones outline más visibles */
+.mat-mdc-outlined-button {
+  border-color: #3a3a3a !important;
+  color: #eaeaea !important;
+}
+
+/* Sombra suave para cards */
+.mat-mdc-card { box-shadow: 0 8px 24px rgba(0,0,0,.35) !important; }
+
+/* Encabezado tabla */
+.mat-mdc-header-row { background: #1f1f1f; }
+
+/* Separadores elegantes */
+.section {
+  letter-spacing: .3px;
+  text-transform: none;
+}
+
+/* Botones outline más visibles */
+.mat-mdc-outlined-button {
+  border-color: #3a3a3a !important;
+  color: #eaeaea !important;
+}
+
+/* Sombra suave para cards */
+.mat-mdc-card { box-shadow: 0 8px 24px rgba(0,0,0,.35) !important; }
+
+/* Encabezado tabla */
+.mat-mdc-header-row { background: #1f1f1f; }
+
+/* Refuerzo global para tablas Material en tema dark */
+.mat-mdc-table .mat-mdc-cell,
+.mat-mdc-table .mat-mdc-footer-cell { color: #ececec !important; }
+.mat-mdc-table .mat-mdc-header-cell { color: #ffffff !important; }
+

@@ -1,0 +1,11 @@
+<mat-card class="epic">
+  <div class="head">
+    <mat-icon>{{ icon }}</mat-icon>
+    <h3>{{ titleKey | translate }}</h3>
+  </div>
+  <ul>
+    @for (l of lines; track $index) {
+      <li>{{ l | translate }}</li>
+    }
+  </ul>
+</mat-card>

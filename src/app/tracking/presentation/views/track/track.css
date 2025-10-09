@@ -1,0 +1,129 @@
+.page { padding:16px; }
+
+.page-head {
+  display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:center;
+  margin-bottom:12px;
+}
+.head-text h1 { margin:0; font-size:22px; color:#fff; }
+.head-text small { color:#bfbfbf; }
+
+.search, .result, .empty {
+  background:#0f2641; border-radius:14px; padding:14px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.35);
+}
+.search-title { color:#f0f6ff; font-weight:700; margin-bottom:8px; }
+.search-row { display:flex; gap:12px; }
+.search-row .grow { flex:1; }
+.hint { color:#a7c1e8; }
+
+.result { margin-top:16px; background:#171717; }
+.sp { margin:12px 0; }
+
+.code-row { display:flex; align-items:center; justify-content:space-between; }
+.label { color:#bdbdbd; font-size:12px; }
+.code { font-size:18px; font-weight:700; color:#fff; }
+
+.grid-4 { display:grid; grid-template-columns: repeat(4,1fr); gap:12px; margin-top:8px; }
+.muted { color:#bdbdbd; font-size:12px; }
+.strong { color:#fff; font-weight:700; }
+
+.progress-label { margin-top:6px; color:#eaeaea; }
+
+.timeline { margin-top:8px; }
+.item {
+  display:grid; grid-template-columns:14px 1fr auto; gap:12px;
+  align-items:flex-start; padding:10px 0; border-bottom:1px solid #2b2b2b;
+}
+.item:last-child { border-bottom: none; }
+.dot { width:14px; height:14px; border-radius:50%; background:#ff9800; margin-top:4px; }
+.content .title { color:#fff; font-weight:700; }
+.content .desc, .city { color:#cfcfcf; font-size:12px; }
+.time { color:#cfcfcf; white-space:nowrap; }
+
+.pending .dot { background:#555; }
+.pending .content .title, .pending .time { color:#8f8f8f; }
+
+
+/* Chips de estado (reuso estilos globales) */
+:host ::ng-deep .mat-mdc-standard-chip{ height:28px; border-radius:999px; }
+:host ::ng-deep mat-chip.in_transit  { background:#2b44b5 !important; color:#eaf0ff !important; }
+:host ::ng-deep mat-chip.delivered   { background:#1e7a34 !important; color:#e9ffea !important; }
+:host ::ng-deep mat-chip.in_route    { background:#006e63 !important; color:#d8fffb !important; }
+:host ::ng-deep mat-chip.registered  { background:#3f3f3f !important; color:#ffffff !important; }
+
+/* Card vacío base */
+.empty {
+  background: #222527;              /* fondo oscuro suave */
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+  padding: 24px 28px;
+  text-align: center;
+  color: #e6e6e6;
+}
+
+/* Variante “no encontrado” */
+.not-found-card {
+  max-width: 720px;
+  margin: 20px auto 0;
+}
+
+/* Icono superior */
+.empty-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  margin: 0 auto 12px auto;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, #2b2f33 0%, #232629 100%);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.empty-icon mat-icon {
+  font-size: 34px;
+  line-height: 34px;
+  width: 34px;
+  height: 34px;
+  color: #c8cdd2;
+}
+
+/* Título */
+.empty-title {
+  margin: 4px 0 8px 0;
+  font-weight: 700;
+  font-size: 18px;
+  color: #f2f2f2;
+}
+
+/* Descripción y ayuda */
+.empty-desc,
+.empty-hint {
+  margin: 2px 0;
+  font-size: 14px;
+  color: #c7cbd0;
+}
+
+/* Resalta el código en naranja */
+.code-accent {
+  color: #ffa726;                    /* naranja Material */
+}
+
+/* Botón “intentar de nuevo” estilo naranja */
+.retry-btn {
+  margin-top: 14px;
+  background: #ff9800 !important;   /* naranja */
+  color: #111 !important;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 8px 18px;
+  box-shadow: 0 6px 18px rgba(255,152,0,0.25);
+}
+.retry-btn:hover {
+  filter: brightness(1.05);
+}
+
+/* Estado de carga (opcional) */
+.loading-card {
+  max-width: 560px;
+  margin: 20px auto 0;
+}
+

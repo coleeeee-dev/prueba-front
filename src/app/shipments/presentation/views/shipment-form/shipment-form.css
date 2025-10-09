@@ -1,0 +1,50 @@
+.page { padding:16px; }
+.page-head {
+  display:grid; grid-template-columns:auto 1fr auto auto; gap:12px; align-items:center;
+  margin-bottom:12px;
+}
+.head-text h1 { margin:0; color:#fff; font-size:22px; }
+.head-text small { color:#bfbfbf; }
+.spacer { flex:1; }
+
+.layout { display:grid; gap:16px; grid-template-columns: 1fr 320px; }
+.main { display:flex; flex-direction:column; gap:16px; }
+
+.section {
+  background:#0f2641; /* azul oscuro */
+  border-radius:14px;
+  padding:14px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.35);
+}
+.section .mat-mdc-form-field { width:100%; }
+.section-title {
+  display:flex; align-items:center; gap:8px;
+  color:#f0f6ff; font-weight:700; margin-bottom:8px;
+}
+.section-title mat-icon { color:#ffb74d; }
+
+.grid { display:grid; gap:12px; grid-template-columns: repeat(2, 1fr); }
+.col-2 { grid-column: 1 / -1; }
+.mt-4 { margin-top: 8px; }
+
+.actions {
+  display:flex; gap:12px; justify-content:flex-start;
+}
+.actions button mat-icon { margin-right:6px; }
+
+.aside .aside-card {
+  background:#0f2641;
+  border-radius:14px;
+  padding:8px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.35);
+}
+.aside-title {
+  display:flex; align-items:center; gap:8px; color:#f0f6ff; font-weight:700; padding:6px 8px;
+}
+.aside mat-nav-list a { position:relative; border-radius:12px; margin:6px 0; }
+.aside mat-nav-list a:hover { background:#173458; }
+.aside .add { position:absolute; right:8px; color:#ffb74d; }
+
+@media (max-width: 1100px) {
+  .layout { grid-template-columns: 1fr; }
+}

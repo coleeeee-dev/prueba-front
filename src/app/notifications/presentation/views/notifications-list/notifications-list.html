@@ -1,0 +1,165 @@
+<div class="page">
+
+  <!-- Header -->
+  <div class="head">
+    <a mat-stroked-button color="primary" routerLink="/dashboard">
+      <mat-icon>arrow_back</mat-icon> Volver
+    </a>
+
+    <div class="title">
+      <h1>Centro de Notificaciones</h1>
+      <small>Gestiona alertas automáticas y configuraciones de notificación</small>
+    </div>
+
+    <mat-button-toggle-group [value]="tab()" (change)="setTab($event.value)">
+      <mat-button-toggle value="inbox">
+        <mat-icon>notifications</mat-icon>
+        Notificaciones
+        <span class="badge" *ngIf="unread()">{{ unread() }}</span>
+      </mat-button-toggle>
+      <mat-button-toggle value="config">
+        <mat-icon>settings</mat-icon>
+        Configuración
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <!-- INBOX -->
+  <div *ngIf="tab() === 'inbox'" class="inbox">
+    <div class="inbox-head">
+      <div class="label">Notificaciones Recientes</div>
+      <button mat-stroked-button color="primary" (click)="store.markAllRead()">Marcar todas como leídas</button>
+    </div>
+
+    <mat-card class="n-card"
+              *ngFor="let n of store.list()"
+              [class.read]="n.read"
+              [class.sev-high-b]="n.severity==='high'"
+              [class.sev-med-b]="n.severity==='medium'"
+              [class.sev-low-b]="n.severity==='low'">
+      <div class="n-row">
+        <div class="n-icon">
+          <mat-icon *ngIf="n.severity==='high'">report</mat-icon>
+          <mat-icon *ngIf="n.severity==='medium'">warning_amber</mat-icon>
+          <mat-icon *ngIf="n.severity==='low'">info</mat-icon>
+        </div>
+
+        <div class="n-content">
+          <div class="n-title">
+            <span>{{ n.title }}</span>
+            <mat-chip-set>
+              <mat-chip [ngClass]="chipClass(n.severity)">{{ n.severity | titlecase }}</mat-chip>
+            </mat-chip-set>
+          </div>
+          <div class="n-msg">{{ n.message }}</div>
+          <div class="n-meta">
+            <span class="code">{{ n.code }}</span>
+            <span class="dot">•</span>
+            <span>{{ n.dateISO | date:'dd MMM yyyy, HH:mm' }}</span>
+          </div>
+        </div>
+
+        <div class="n-actions">
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="store.markRead(n.id)">
+              <mat-icon>done_all</mat-icon>
+              <span>Marcar como leído</span>
+            </button>
+            <button mat-menu-item (click)="store.remove(n.id)">
+              <mat-icon>delete</mat-icon>
+              <span>Eliminar</span>
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
+  <!-- CONFIG -->
+  <div *ngIf="tab() === 'config'" class="config">
+
+    <mat-card class="cfg-card">
+      <div class="cfg-title"><mat-icon>tune</mat-icon> Canales de Comunicación</div>
+      <mat-divider></mat-divider>
+
+      <div class="cfg-row">
+        <div class="cfg-item">
+          <div class="label">Notificaciones por Email</div>
+          <div class="desc">Recibe alertas por tu correo electrónico</div>
+        </div>
+        <!-- ✅ Usar signals directamente: checked + change -->
+        <mat-slide-toggle
+          color="primary"
+          [checked]="cfgEmail()"
+          (change)="cfgEmail.set($event.checked)">
+        </mat-slide-toggle>
+      </div>
+
+      <div class="cfg-row">
+        <div class="cfg-item">
+          <div class="label">Notificaciones por WhatsApp</div>
+          <div class="desc">Recibe mensajes directos en WhatsApp</div>
+        </div>
+        <mat-slide-toggle
+          color="primary"
+          [checked]="cfgWhats()"
+          (change)="cfgWhats.set($event.checked)">
+        </mat-slide-toggle>
+      </div>
+    </mat-card>
+
+    <mat-card class="cfg-card">
+      <div class="cfg-title"><mat-icon>rule</mat-icon> Tipos de Alerta</div>
+      <mat-divider></mat-divider>
+
+      <div class="cfg-row">
+        <div class="cfg-item">
+          <div class="label">Alertas de Retraso</div>
+          <div class="desc">Notificación automática cuando un envío se retrasa</div>
+        </div>
+        <mat-slide-toggle
+          color="primary"
+          [checked]="cfgDelay()"
+          (change)="cfgDelay.set($event.checked)">
+        </mat-slide-toggle>
+      </div>
+
+      <div class="cfg-row">
+        <div class="cfg-item">
+          <div class="label">Confirmaciones de Entrega</div>
+          <div class="desc">Notificar cuando un paquete es entregado</div>
+        </div>
+        <mat-slide-toggle
+          color="primary"
+          [checked]="cfgConfirm()"
+          (change)="cfgConfirm.set($event.checked)">
+        </mat-slide-toggle>
+      </div>
+
+      <div class="cfg-row disabled">
+        <div class="cfg-item">
+          <div class="label">Actualizaciones de Estado</div>
+          <div class="desc">Notificar cada cambio de estado del envío</div>
+        </div>
+        <mat-slide-toggle color="primary" disabled [checked]="cfgStatus()"></mat-slide-toggle>
+      </div>
+    </mat-card>
+
+    <mat-card class="ai-card">
+      <div class="ai-title"><mat-icon>smart_toy</mat-icon> Sistema de Notificaciones Inteligente</div>
+      <div class="ai-grid">
+        <div class="ai-cell">
+          <div class="key">US-041: Notificación de retraso</div>
+          <div class="val">Como administrador, recibo alertas automáticas cuando el sistema detecta retrasos.</div>
+        </div>
+        <div class="ai-cell">
+          <div class="key">US-042: Confirmación de entrega</div>
+          <div class="val">Como cliente, recibo notificación por email/WhatsApp cuando mi pedido es entregado.</div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

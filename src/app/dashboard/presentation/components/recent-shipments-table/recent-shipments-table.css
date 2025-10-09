@@ -1,0 +1,53 @@
+/* ====== Tabla (se mantiene lo que ya tienes) ====== */
+.table {
+  width: 100%;
+  background: #151515;
+  color: #f0f0f0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+th { color: #fafafa; font-weight: 700; letter-spacing: .2px; }
+.mat-mdc-header-row { background: #1f1f1f; }
+.mat-mdc-row { background: transparent; }
+.mat-mdc-row:nth-child(odd)  { background: #141414; }
+.mat-mdc-row:nth-child(even) { background: #101010; }
+.mat-mdc-cell, .mat-mdc-footer-cell { color: #eaeaea !important; font-weight: 500; border-bottom-color: #2b2b2b; }
+.mat-mdc-row:hover { background: #1c1c1c; }
+.mat-mdc-header-cell { border-bottom-color: #2b2b2b; }
+
+/* ====== CHIPS DE ESTADO — MÁS VISIBLES ====== */
+/* Tamaño/forma/typography */
+:host ::ng-deep .mat-mdc-standard-chip {
+  height: 30px !important;
+  border-radius: 999px !important;
+  padding: 0 14px !important;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 6px 14px rgba(0,0,0,.35);
+}
+:host ::ng-deep .mat-mdc-chip-action-label,
+:host ::ng-deep .mdc-evolution-chip__text-label {
+  font-weight: 700;
+  letter-spacing: .2px;
+  font-size: 13px;
+}
+
+/* Colores por estado (alto contraste) */
+:host ::ng-deep mat-chip.in_transit  {
+  background: #2b44b5 !important;          /* indigo intenso */
+  color: #eaf0ff !important;
+  border: 1px solid #5c79ff !important;
+}
+:host ::ng-deep mat-chip.delivered   {
+  background: #1e7a34 !important;          /* verde */
+  color: #e9ffea !important;
+  border: 1px solid #3bd16a !important;
+}
+:host ::ng-deep mat-chip.in_route    {
+  background: #006e63 !important;          /* teal */
+  color: #d8fffb !important;
+  border: 1px solid #31b9ae !important;
+}
+:host ::ng-deep mat-chip.registered  {
+  background: #3f3f3f !important;          /* gris visible */
+  color: #ffffff !important;
+  border: 1px solid #8c8c8c !important;
+}

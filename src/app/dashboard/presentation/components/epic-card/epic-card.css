@@ -1,0 +1,22 @@
+.epic {
+  background: #1e1e1e;
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+}
+
+.head mat-icon { color: #ffa726; }
+
+ul {
+  margin: 8px 0 0 20px;
+  color: #bdbdbd;
+  padding: 0;
+}
+
+li { margin: 6px 0; }

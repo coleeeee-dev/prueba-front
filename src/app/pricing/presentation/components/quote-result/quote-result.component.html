@@ -1,0 +1,91 @@
+<div *ngIf="quote(); else noQuote" class="results-container">
+
+  <!-- Optimización de costos -->
+  <div class="optimization-card">
+    <div class="optimization-header">
+      <span class="icon">💡</span>
+      <h3>{{ 'pricing.quote.optimization.title' | translate }}</h3>
+    </div>
+
+    <p class="optimization-description">
+      {{ 'pricing.quote.optimization.desc' | translate }}
+    </p>
+
+    <div class="optimization-content">
+      <div class="optimization-column">
+        <h4>{{ 'pricing.quote.optimization.factors.title' | translate }}</h4>
+        <ul>
+          <li>{{ 'pricing.quote.optimization.factors.f1' | translate }}</li>
+          <li>{{ 'pricing.quote.optimization.factors.f2' | translate }}</li>
+          <li>{{ 'pricing.quote.optimization.factors.f3' | translate }}</li>
+        </ul>
+      </div>
+
+      <div class="optimization-column">
+        <h4>{{ 'pricing.quote.optimization.benefits.title' | translate }}</h4>
+        <ul>
+          <li>{{ 'pricing.quote.optimization.benefits.b1' | translate }}</li>
+          <li>{{ 'pricing.quote.optimization.benefits.b2' | translate }}</li>
+          <li>{{ 'pricing.quote.optimization.benefits.b3' | translate }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Opciones -->
+  <h2 class="section-title">{{ 'pricing.quote.available' | translate }}</h2>
+
+  <div class="options-list">
+    <div
+      *ngFor="let opt of shippingOptions()"
+      class="option-card"
+      [class.selected]="isSelected(opt.code)"
+      (click)="selectOption(opt.code)"
+    >
+      <div class="option-left">
+        <div class="option-icon" [ngStyle]="{ background: opt.color }">
+          {{ opt.code }}
+        </div>
+
+        <div class="option-info">
+          <div class="option-header">
+            <h3 class="option-name">{{ opt.type }}</h3>
+            <span *ngIf="opt.recommended" class="badge badge-green">★ {{ 'pricing.quote.recommended' | translate }}</span>
+            <span *ngIf="isSelected(opt.code)" class="badge badge-blue">✅ {{ 'pricing.quote.selected' | translate }}</span>
+          </div>
+
+          <div class="option-rating">
+            <span class="stars">★★★★★</span>
+            <span class="rating-number">({{ opt.rating }})</span>
+            <span class="delivery-time">{{ opt.time }}</span>
+          </div>
+
+          <div class="features-tags">
+            <span *ngFor="let tag of opt.tags" class="feature-tag">{{ tag }}</span>
+          </div>
+
+          <div *ngIf="isSelected(opt.code)" class="selected-msg">
+            ✅ {{ 'pricing.quote.selected.ok' | translate }}
+          </div>
+        </div>
+      </div>
+
+      <div class="option-right">
+        <div class="option-price">S/ {{ opt.price }}</div>
+        <button
+          *ngIf="isSelected(opt.code)"
+          class="proceed-btn"
+          (click)="onProceed(); $event.stopPropagation()"
+        >
+          {{ 'pricing.quote.proceed.cta' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noQuote>
+  <div class="empty-state">
+    <p>{{ 'pricing.quote.empty' | translate }}</p>
+  </div>
+</ng-template>

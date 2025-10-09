@@ -1,0 +1,28 @@
+<mat-card class="form-card">
+  <h2 class="title">Cotiza tu envío</h2>
+
+  <form (ngSubmit)="calcular()" class="quote-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Origen</mat-label>
+      <mat-select [(ngModel)]="data.origin" name="origin" required>
+        <mat-option *ngFor="let city of cities" [value]="city">{{ city }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Destino</mat-label>
+      <mat-select [(ngModel)]="data.destination" name="destination" required>
+        <mat-option *ngFor="let city of cities" [value]="city">{{ city }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Peso (kg)</mat-label>
+      <input matInput type="number" [(ngModel)]="data.weight" name="weight" required min="0.1" step="0.1" />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="store.loading()">
+      {{ store.loading() ? 'Calculando...' : 'Calcular Cotización' }}
+    </button>
+  </form>
+</mat-card>
