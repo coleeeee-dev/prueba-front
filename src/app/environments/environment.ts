@@ -1,4 +1,5 @@
+// environment.development.ts
 export const environment = {
-  production: false,
-  apiBaseUrl: 'http://localhost:4000'
+  production: true,
+  apiBaseUrl: 'https://sendify-json-api.onrender.com/'
 };
