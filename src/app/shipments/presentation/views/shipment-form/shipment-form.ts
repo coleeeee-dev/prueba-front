@@ -1,111 +1,104 @@
+// src/app/shipments/presentation/views/shipment-form/shipment-form.ts
+
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
-
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatListModule } from '@angular/material/list';
-
+import { Router } from '@angular/router';
 import { ShipmentsApi } from '../../../infrastructure/shipments-api';
-import {TranslatePipe} from '@ngx-translate/core';
-
-type FrequentClient = { name: string; phone: string; address: string; city: string };
 
 @Component({
-  standalone: true,
   selector: 'app-shipment-form',
-  imports: [
-    CommonModule, ReactiveFormsModule, RouterModule,
-    MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule,
-    MatCheckboxModule, MatButtonModule, MatIconModule, MatDividerModule, MatListModule, TranslatePipe
-  ],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './shipment-form.html',
   styleUrls: ['./shipment-form.css']
 })
-export class ShipmentFormComponent {
+export class ShipmentForm {
   private fb = inject(FormBuilder);
   private api = inject(ShipmentsApi);
   private router = inject(Router);
 
-  cities = ['Lima', 'Arequipa', 'Cusco', 'Trujillo', 'Chiclayo', 'Piura'];
+  // Puedes ajustar nombres de controles según tu HTML,
+  // lo importante es cómo se usan en submit()
+  form = this.fb.nonNullable.group({
+    // Datos remitente
+    senderName: ['', Validators.required],
+    senderEmail: ['', [Validators.required, Validators.email]],
+    senderPhone: ['', Validators.required],
+    senderStreet: ['', Validators.required],
+    senderCity: ['', Validators.required],
 
-  // mock de clientes frecuentes
-  frequent: FrequentClient[] = [
-    { name: 'TechStore SA',  phone: '+51 999 123 456', address: 'Av. Principal 123, Lima',  city: 'Lima' },
-    { name: 'Moda Express',  phone: '+51 999 654 321', address: 'Jr. Comercio 456, Cusco', city: 'Cusco' },
-    { name: 'Electro Mundial', phone: '+51 999 789 012', address: 'Av. Industrial 789, Arequipa', city: 'Arequipa' },
-  ];
+    // Datos destinatario
+    recipientName: ['', Validators.required],
+    recipientEmail: ['', [Validators.required, Validators.email]],
+    recipientPhone: ['', Validators.required],
+    recipientStreet: ['', Validators.required],
+    recipientCity: ['', Validators.required],
 
-  form = this.fb.group({
-    sender: this.fb.group({
-      name: ['', Validators.required],
-      phone: [''],
-      email: [''],
-      address: [''],
-      city: ['']
-    }),
-    recipient: this.fb.group({
-      name: ['', Validators.required],
-      phone: [''],
-      email: [''],
-      address: [''],
-      city: ['']
-    }),
-    pkg: this.fb.group({
-      description: [''],
-      weightKg: [null as number | null, [Validators.required]],
-      dims: [''],
-      declared: [null as number | null]
-    }),
-    saveAsFrequent: [false]
+    // Paquete / envío
+    weightKg: [1, [Validators.required, Validators.min(0.1)]],
+    courierId: [1, Validators.required],
+    deliveryPersonId: ['']
   });
 
-  saving = false;
+  submitting = false;
 
-  useFrequent(c: FrequentClient) {
-    this.form.patchValue({
-      recipient: {
-        name: c.name,
-        phone: c.phone,
-        address: c.address,
-        city: c.city
-      }
-    });
-  }
+  submit(): void {
+    if (this.submitting) {
+      return;
+    }
 
-  cancel() { this.router.navigateByUrl('/dashboard'); }
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
 
-  async submit() {
-    if (this.form.invalid) { this.form.markAllAsTouched(); return; }
-    this.saving = true;
+    this.submitting = true;
 
-    // Generar un código simple único
-    const rand = Math.floor(100 + Math.random() * 900);
-    const code = `SND-${rand}`;
+    const v = this.form.getRawValue();
 
-    const v = this.form.value;
-    // Usaremos lo que tu dashboard necesita:
+    // Payload alineado al backend (CreateShipmentResource)
     const payload = {
-      // json-server puede generar id si lo omites, pero añadimos por estabilidad:
-      id: Date.now(),
-      code,
-      client: v.recipient?.name ?? 'Cliente',
-      destination: v.recipient?.city ?? '',
-      status: 'registered' as const,
-      dateISO: new Date().toISOString().slice(0, 10) // yyyy-MM-dd
+      sender: {
+        name: v.senderName,
+        email: v.senderEmail,
+        phone: v.senderPhone
+      },
+      recipient: {
+        name: v.recipientName,
+        email: v.recipientEmail,
+        phone: v.recipientPhone
+      },
+      originAddress: {
+        street: v.senderStreet,
+        city: v.senderCity,
+        state: 'Lima',
+        zipCode: '15000',
+        country: 'Peru'
+      },
+      destinationAddress: {
+        street: v.recipientStreet,
+        city: v.recipientCity,
+        state: 'Lima',
+        zipCode: '15000',
+        country: 'Peru'
+      },
+      weight: Number(v.weightKg),
+      courierId: Number(v.courierId),
+      deliveryPersonId: v.deliveryPersonId || null
     };
 
     this.api.create(payload).subscribe({
-      next: () => this.router.navigateByUrl('/dashboard'),
-      error: () => this.saving = false,
-      complete: () => this.saving = false
+      next: () => {
+        this.submitting = false;
+        // Puedes cambiar la ruta según tu app (ej. '/shipments' o '/dashboard')
+        this.router.navigateByUrl('/dashboard');
+      },
+      error: (err) => {
+        console.error('Error creating shipment', err);
+        // Aquí podrías mostrar un mensaje en la UI
+        this.submitting = false;
+      }
     });
   }
 }

@@ -1,5 +1,5 @@
 // environment.development.ts
 export const environment = {
-  production: true,
-  apiBaseUrl: 'https://sendify-json-api.onrender.com'
+  production: false,
+  apiBaseUrl: 'https://sendify-backend-open-production.up.railway.app/api/v1'
 };
