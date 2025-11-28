@@ -9,7 +9,7 @@
   "dashboard": {
     "title": "Dashboard SENDIFY",
     "subtitle": "Gestiona tus envíos desde un lugar",
-    "goHome": "Volver al inicio",
+    "goHome": "Cerrar Sesion",
     "liveStats": "ESTADÍSTICAS EN VIVO",
     "quickActions": "ACCIONES RÁPIDAS",
     "recentShipments": "ENVÍOS RECIENTES",

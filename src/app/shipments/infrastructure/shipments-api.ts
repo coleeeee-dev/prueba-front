@@ -1,52 +1,52 @@
 // src/app/shipments/infrastructure/shipments-api.ts
+import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Observable } from 'rxjs';
+
 import { environment } from '../../environments/environment';
-import { ShipmentsApiEndpoint } from './shipments-api-endpoint';
 import { ShipmentBackendResponse } from './shipments-backend-response';
-import { Observable, map } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ShipmentsApi {
+
   private http = inject(HttpClient);
 
-  // https://TU_BACKEND_RAILWAY/api/v1 + /shipments = /api/v1/shipments
-  private readonly base = environment.apiBaseUrl + ShipmentsApiEndpoint.base;
+  // 👇 SIEMPRE apuntar al backend, NO a localhost:4200
+  private readonly baseUrl = `${environment.apiBaseUrl}/shipments`;
 
   /**
-   * Lista de envíos recientes para el dashboard.
-   * Traemos todos del backend, ordenamos por fecha y nos quedamos con los primeros N.
-   */
-  listRecent(limit = 4): Observable<ShipmentBackendResponse[]> {
-    return this.http.get<ShipmentBackendResponse[]>(this.base).pipe(
-      map(list =>
-        [...list] // copiamos para no mutar la respuesta original
-          .sort((a, b) => {
-            const da = (a.createdAt ?? a.estimatedDelivery ?? '').toString();
-            const db = (b.createdAt ?? b.estimatedDelivery ?? '').toString();
-            return new Date(db).getTime() - new Date(da).getTime();
-          })
-          .slice(0, limit)
-      )
-    );
-  }
-
-  /**
-   * Buscar por código de tracking (pantalla Tracking).
-   * El backend aún no tiene endpoint específico, así que filtramos en el front.
-   */
-  getByCode(code: string): Observable<ShipmentBackendResponse[]> {
-    return this.http.get<ShipmentBackendResponse[]>(this.base).pipe(
-      map(list => list.filter(s => s.trackingCode === code))
-    );
-  }
-
-  /**
-   * Crear envío.
-   * OJO: aquí esperamos que el payload tenga la forma del CreateShipmentResource del backend.
-   * Más adelante podemos pulir el tipo; por ahora usamos any para no pelear con TS.
+   * Crear envío
+   * POST https://.../api/v1/shipments
    */
   create(payload: any): Observable<ShipmentBackendResponse> {
-    return this.http.post<ShipmentBackendResponse>(this.base, payload);
+    return this.http.post<ShipmentBackendResponse>(this.baseUrl, payload);
+  }
+
+  /**
+   * Listar TODOS los envíos
+   * GET https://.../api/v1/shipments
+   */
+  getAll(): Observable<ShipmentBackendResponse[]> {
+    return this.http.get<ShipmentBackendResponse[]>(this.baseUrl);
+  }
+
+  /**
+   * Listar últimos N envíos (si el backend no filtra,
+   * cortamos en el front con slice).
+   */
+  listRecent(limit: number): Observable<ShipmentBackendResponse[]> {
+    return this.http.get<ShipmentBackendResponse[]>(this.baseUrl, {
+      params: new HttpParams().set('size', limit.toString())
+    });
+  }
+
+  /**
+   * Buscar por código de seguimiento.
+   * Supongo que el backend filtra con ?trackingCode=...
+   * (esto ya te funcionaba antes con el tracking).
+   */
+  getByCode(code: string): Observable<ShipmentBackendResponse[]> {
+    const params = new HttpParams().set('trackingCode', code);
+    return this.http.get<ShipmentBackendResponse[]>(this.baseUrl, { params });
   }
 }

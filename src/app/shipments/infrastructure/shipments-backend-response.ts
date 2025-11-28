@@ -1,16 +1,14 @@
-// Respuesta que viene del backend (ShipmentResource de Spring)
 export interface ContactInformationBackend {
   name: string;
-  email: string;
-  phone: string;
+  contactEmail: string;
+  contactPhone: string;
 }
 
 export interface AddressBackend {
   street: string;
   city: string;
-  state: string;
-  zipCode: string;
   country: string;
+  postalCode?: string | null;
 }
 
 export interface ShipmentBackendResponse {
@@ -22,10 +20,19 @@ export interface ShipmentBackendResponse {
   destinationAddress: AddressBackend;
   weight: number;
   cost: number;
-  status: 'PENDING' | 'IN_TRANSIT' | 'DELIVERED' | 'CANCELLED';
+  status: string;
   courierId: number;
-  deliveryPersonId: string | null;
-  estimatedDelivery: string | null; // LocalDate → string
-  createdAt: string | null;         // Instant → string
-  updatedAt: string | null;
+  deliveryPersonId?: string | null;
+  estimatedDelivery?: string | null;
+  createdAt?: string | null;
+  updatedAt?: string | null;
+
+  // ✅ Opcional, para que no truene el type-checking cuando en track.ts
+  // haces (row.events as TrackEvent[] ?? [])
+  events?: {
+    status: string;
+    description: string;
+    location: string;
+    timestamp: string;
+  }[];
 }

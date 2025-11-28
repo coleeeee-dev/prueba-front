@@ -9,7 +9,7 @@
   "dashboard": {
     "title": "SENDIFY Dashboard",
     "subtitle": "Manage your shipments in one place",
-    "goHome": "Go home",
+    "goHome": "Logout",
     "liveStats": "LIVE STATS",
     "quickActions": "QUICK ACTIONS",
     "recentShipments": "RECENT SHIPMENTS",

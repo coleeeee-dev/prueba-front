@@ -9,7 +9,16 @@
     </div>
     <span class="spacer"></span>
     <app-language-switcher></app-language-switcher>
-    <a mat-stroked-button color="primary" routerLink="/login" class="ml-2">{{ 'dashboard.goHome' | translate }}</a>
+    <button
+      mat-stroked-button
+      color="primary"
+      type="button"
+      class="ml-2"
+      (click)="onLogout()">
+      {{ 'dashboard.goHome' | translate }}
+    </button>
+
+
   </header>
 
   <h2 class="section">{{ 'dashboard.liveStats' | translate }}</h2>
@@ -22,6 +31,18 @@
 
   <h2 class="section">{{ 'dashboard.recentShipments' | translate }}</h2>
   <mat-card class="box"><app-recent-shipments-table [data]="store.recentShipments()" /></mat-card>
+
+  <!-- ... sección de Envíos recientes ... -->
+
+  <div class="recent-shipments-footer">
+    <button
+      mat-stroked-button
+      color="primary"
+      routerLink="/shipments">
+      Ver todos los envíos
+    </button>
+  </div>
+
 
   <h2 class="section">EPIC CARDS</h2>
   <div class="epic-grid">
