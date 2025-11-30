@@ -1,0 +1,134 @@
+<section class="notifications-page">
+  <header class="notifications-header">
+    <button mat-button routerLink="/dashboard" class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+      Volver
+    </button>
+
+    <div class="header-main">
+      <h1>Centro de Notificaciones</h1>
+      <p class="subtitle">
+        Gestiona alertas automáticas y configuraciones de notificación.
+      </p>
+    </div>
+
+    <div class="header-tabs">
+      <button
+        mat-raised-button
+        color="primary"
+        [class.active]="activeTab === 'notifications'"
+        (click)="setTab('notifications')">
+        Notificaciones
+        <span class="badge" *ngIf="unreadCount > 0">{{ unreadCount }}</span>
+      </button>
+
+      <button
+        mat-stroked-button
+        color="primary"
+        [class.active]="activeTab === 'settings'"
+        (click)="setTab('settings')">
+        Configuración
+      </button>
+    </div>
+  </header>
+
+  <main class="notifications-content">
+    <!-- TAB: NOTIFICACIONES -->
+    @if (activeTab === 'notifications') {
+      <mat-card class="notifications-card">
+        <div class="card-header">
+          <h2>Notificaciones recientes</h2>
+
+          <div class="card-actions" *ngIf="notifications.length > 0">
+            <button mat-button (click)="markAllAsRead()">
+              Marcar todo como leído
+            </button>
+            <button mat-button color="warn" (click)="clearAll()">
+              Borrar todo
+            </button>
+          </div>
+        </div>
+
+        @if (notifications.length === 0) {
+          <p class="empty-state">
+            No tienes notificaciones recientes por ahora.
+          </p>
+        } @else {
+          <div class="notification-list">
+            @for (n of notifications; track n.id) {
+              <mat-card
+                class="notification-item"
+                [class.notification-unread]="!n.read"
+                (click)="markAsRead(n)">
+                <div class="notification-header">
+                  <div class="notification-title">
+                    <span class="notification-type-chip" [ngClass]="n.type">
+                      @switch (n.type) {
+                        @case ('shipment') { Envío }
+                        @case ('auction') { Subasta }
+                        @case ('system') { Sistema }
+                        @default { General }
+                      }
+                    </span>
+                    <span>{{ n.title }}</span>
+                  </div>
+                  <span class="notification-date">{{ n.createdAt }}</span>
+                </div>
+                <p class="notification-message">
+                  {{ n.message }}
+                </p>
+              </mat-card>
+            }
+          </div>
+        }
+      </mat-card>
+    }
+
+    <!-- TAB: CONFIGURACIÓN -->
+    @if (activeTab === 'settings') {
+      <mat-card class="settings-card">
+        <h2>Preferencias de notificación</h2>
+        <p class="subtitle">
+          Elige cómo quieres recibir alertas sobre tus envíos y subastas.
+        </p>
+
+        <div class="settings-group">
+          <h3>Canales de notificación</h3>
+
+          <mat-slide-toggle
+            [checked]="settings.email"
+            (change)="toggleSetting('email')">
+            Notificaciones por correo electrónico
+          </mat-slide-toggle>
+
+          <mat-slide-toggle
+            [checked]="settings.inApp"
+            (change)="toggleSetting('inApp')">
+            Notificaciones dentro de Sendify (in-app)
+          </mat-slide-toggle>
+
+          <mat-slide-toggle
+            [checked]="settings.sms"
+            (change)="toggleSetting('sms')">
+            Alertas por SMS
+          </mat-slide-toggle>
+        </div>
+
+        <div class="settings-group">
+          <h3>Intensidad</h3>
+
+          <mat-slide-toggle
+            [checked]="settings.criticalOnly"
+            (change)="toggleSetting('criticalOnly')">
+            Solo alertas importantes (retrasos, incidencias, etc.)
+          </mat-slide-toggle>
+
+          <p class="helper-text">
+            Cuando esta opción está activada, solo recibirás notificaciones
+            críticas relacionadas con retrasos, incidencias o entregas fallidas.
+          </p>
+        </div>
+      </mat-card>
+    }
+  </main>
+</section>

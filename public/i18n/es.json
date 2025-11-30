@@ -140,7 +140,14 @@
     "description": "Descripción / contenido",
     "submit": "Publicar subasta",
     "offersTitle": "Ofertas de couriers",
-    "offersPlaceholder": "Cuando publiquemos tu subasta, aquí verás las propuestas de los couriers."
+    "offersPlaceholder": "Cuando publiquemos tu subasta, aquí verás las propuestas de los couriers.",
+    "loading": "Publicando tu subasta...",
+    "lastRequestTitle": "Última subasta publicada",
+    "courierOffersTitle": "Elige un courier para esta subasta",
+    "noCouriers": "No hay couriers disponibles por ahora. Intenta más tarde.",
+    "eta": "Entrega estimada: {{days}} días"
+
+
   }
 
 

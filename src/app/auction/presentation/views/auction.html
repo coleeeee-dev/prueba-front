@@ -1,4 +1,5 @@
 <section class="auction-page">
+  <!-- LEFT: FORM -->
   <mat-card class="auction-card">
     <h1>{{ 'auction.title' | translate }}</h1>
     <p class="subtitle">
@@ -9,25 +10,41 @@
       <div class="form-row">
         <mat-form-field appearance="fill">
           <mat-label>{{ 'auction.origin' | translate }}</mat-label>
-          <input matInput formControlName="origin" placeholder="Lima, Peru" />
+          <input
+            matInput
+            formControlName="origin"
+            placeholder="Lima, Peru"
+          />
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>{{ 'auction.destination' | translate }}</mat-label>
-          <input matInput formControlName="destination" placeholder="Arequipa, Peru" />
+          <input
+            matInput
+            formControlName="destination"
+            placeholder="Cusco, Peru"
+          />
         </mat-form-field>
       </div>
 
       <div class="form-row">
         <mat-form-field appearance="fill">
           <mat-label>{{ 'auction.weightKg' | translate }}</mat-label>
-          <input matInput type="number" formControlName="weightKg" />
+          <input
+            matInput
+            type="number"
+            formControlName="weightKg"
+          />
           <span matSuffix>kg</span>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>{{ 'auction.declaredValue' | translate }}</mat-label>
-          <input matInput type="number" formControlName="declaredValue" />
+          <input
+            matInput
+            type="number"
+            formControlName="declaredValue"
+          />
           <span matSuffix>$</span>
         </mat-form-field>
       </div>
@@ -35,19 +52,31 @@
       <div class="form-row dims-row">
         <mat-form-field appearance="fill">
           <mat-label>{{ 'auction.length' | translate }}</mat-label>
-          <input matInput type="number" formControlName="lengthCm" />
+          <input
+            matInput
+            type="number"
+            formControlName="lengthCm"
+          />
           <span matSuffix>cm</span>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>{{ 'auction.width' | translate }}</mat-label>
-          <input matInput type="number" formControlName="widthCm" />
+          <input
+            matInput
+            type="number"
+            formControlName="widthCm"
+          />
           <span matSuffix>cm</span>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>{{ 'auction.height' | translate }}</mat-label>
-          <input matInput type="number" formControlName="heightCm" />
+          <input
+            matInput
+            type="number"
+            formControlName="heightCm"
+          />
           <span matSuffix>cm</span>
         </mat-form-field>
       </div>
@@ -62,19 +91,93 @@
       </mat-form-field>
 
       <div class="actions">
-        <button mat-raised-button color="primary" type="submit">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit">
           {{ 'auction.submit' | translate }}
         </button>
       </div>
     </form>
   </mat-card>
 
+  <!-- RIGHT: OFFERS PANEL -->
   <mat-card class="offers-card">
     <h2>{{ 'auction.offersTitle' | translate }}</h2>
-    <p class="subtitle">
-      {{ 'auction.offersPlaceholder' | translate }}
-    </p>
 
-    <!-- Aquí luego mostraremos las ofertas reales de couriers -->
+    <div class="offers-content">
+      @if (auctionStore.loading()) {
+        <p class="subtitle">
+          {{ 'auction.loading' | translate }}
+        </p>
+      } @else if (auctionStore.error()) {
+        <p class="subtitle error">
+          {{ auctionStore.error() | translate }}
+        </p>
+      } @else if (auctionStore.lastRequest(); as req) {
+        <p class="subtitle">
+          {{ 'auction.lastRequestTitle' | translate }}
+        </p>
+
+        <!-- Resumen de la última subasta -->
+        <ul class="summary-list">
+          <li>
+            <strong>{{ 'auction.origin' | translate }}:</strong> {{ req.origin }}
+          </li>
+          <li>
+            <strong>{{ 'auction.destination' | translate }}:</strong>
+            {{ req.destination }}
+          </li>
+          <li>
+            <strong>{{ 'auction.weightKg' | translate }}:</strong>
+            {{ req.weightKg }} kg
+          </li>
+          <li>
+            <strong>{{ 'auction.declaredValue' | translate }}:</strong>
+            {{ req.declaredValue }} $
+          </li>
+          <li>
+            <strong>Status:</strong> {{ req.status }}
+          </li>
+        </ul>
+
+        <!-- Ofertas de couriers -->
+        <h3 class="offers-subtitle">
+          {{ 'auction.courierOffersTitle' | translate }}
+        </h3>
+
+        @if (auctionStore.couriers().length > 0) {
+          <div class="courier-options">
+            @for (c of auctionStore.couriers(); track c.id) {
+              <button
+                mat-raised-button
+                color="accent"
+                type="button"
+                class="courier-option"
+                (click)="onSelectCourier(c)">
+                <div class="courier-option-main">
+                  <span class="courier-name">{{ c.name }}</span>
+                  <span class="courier-price">
+          ~ {{ c.estimatedPrice | number:'1.2-2' }} {{ c.currency }}
+        </span>
+                </div>
+                <div class="courier-option-meta">
+                  {{ 'auction.eta' | translate:{ days: c.estimatedDeliveryDays } }}
+                </div>
+              </button>
+            }
+          </div>
+
+        } @else {
+          <p class="subtitle">
+            {{ 'auction.noCouriers' | translate }}
+          </p>
+        }
+      } @else {
+        <p class="subtitle">
+          {{ 'auction.offersPlaceholder' | translate }}
+        </p>
+      }
+    </div>
   </mat-card>
 </section>

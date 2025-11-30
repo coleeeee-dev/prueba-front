@@ -141,7 +141,14 @@
     "description": "Description / contents",
     "submit": "Publish auction",
     "offersTitle": "Courier offers",
-    "offersPlaceholder": "Once you publish your auction, the courier proposals will appear here."
+    "offersPlaceholder": "Once you publish your auction, the courier proposals will appear here.",
+    "loading": "Publishing your auction...",
+    "lastRequestTitle": "Last published auction",
+    "courierOffersTitle": "Choose a courier for this auction",
+    "noCouriers": "No couriers available right now. Try again later.",
+    "eta": "Estimated delivery: {{days}} days"
+
+
   }
 
 

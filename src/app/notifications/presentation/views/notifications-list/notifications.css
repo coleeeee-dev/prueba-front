@@ -1,0 +1,228 @@
+.notifications-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 24px;
+  align-items: center;
+}
+
+.notifications-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 960px;
+}
+
+.back-button {
+  min-width: 0;
+}
+
+.header-main h1 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.header-main .subtitle {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.header-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-tabs .active {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.badge {
+  background-color: #ff5252;
+  color: #fff;
+  border-radius: 999px;
+  padding: 0 8px;
+  font-size: 0.75rem;
+  margin-left: 6px;
+}
+
+
+.notifications-card,
+.settings-card {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.card-actions button {
+  font-size: 0.8rem;
+}
+
+.empty-state {
+  margin: 16px 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.notification-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.notification-item {
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.notification-item:hover {
+  transform: translateY(-1px);
+}
+
+.notification-unread {
+  border-left: 3px solid #42a5f5;
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notification-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.notification-date {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.notification-message {
+  margin-top: 4px;
+  font-size: 0.9rem;
+}
+
+.notification-type-chip {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.notification-type-chip.shipment {
+  background-color: rgba(76, 175, 80, 0.15);
+  color: #81c784;
+}
+
+.notification-type-chip.auction {
+  background-color: rgba(255, 193, 7, 0.15);
+  color: #ffd54f;
+}
+
+.notification-type-chip.system {
+  background-color: rgba(33, 150, 243, 0.15);
+  color: #64b5f6;
+}
+
+.settings-card .subtitle {
+  margin-bottom: 16px;
+}
+
+.settings-group {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.settings-group h3 {
+  margin: 0 0 4px;
+}
+
+.helper-text {
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+
+/* Mejora de visibilidad de los slide-toggle */
+.settings-card mat-slide-toggle {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+  color: #ffffff;            /* 👈 fuerza texto blanco sobre fondo oscuro */
+}
+
+.settings-card h2,
+.settings-card h3,
+.settings-card .subtitle {
+  color: #ffffff;
+}
+
+/* ==== FIX VISIBILIDAD CONFIGURACIÓN ==== */
+
+/* Que toda la card de configuración tenga texto blanco legible */
+.settings-card {
+  color: #ffffff;
+}
+
+/* Etiquetas de los slide-toggle (texto de los canales) */
+.settings-card .mat-mdc-slide-toggle .mdc-label {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* Títulos y subtítulos dentro de configuración */
+.settings-card h2,
+.settings-card h3,
+.settings-card .subtitle {
+  color: #ffffff;
+  opacity: 1;
+}
+
+/* Texto de ayuda de intensidad */
+.settings-card .helper-text {
+  color: #ffffff;
+  opacity: 0.85;
+}
+.notifications-page,
+.notifications-page * {
+  text-shadow: none;
+}
+
+.notifications-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px 32px;
+  align-items: center;
+}
+
+.notifications-header,
+.notifications-content {
+  width: 100%;
+  max-width: 960px;
+}
+
+.notifications-card,
+.settings-card {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}

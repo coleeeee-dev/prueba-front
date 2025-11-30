@@ -1,93 +1,180 @@
-/* ---- Dark base ---- */
-:root { color-scheme: dark; }
+/* ==== FIX VISIBILIDAD CONFIGURACIÓN ==== */
 
-html, body { height: 100%; }
-
-body {
-  margin: 0;
-  background: #0b0b0b;   /* fondo negro */
-  color: #f2f2f2;        /* texto claro */
-  font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
+/* Que toda la card de configuración tenga texto blanco legible */
+.settings-card {
+  color: #ffffff;
 }
 
-/* Links por defecto */
-a, a:visited { color: #7ab3ff; text-decoration: none; }
-a:hover { text-decoration: underline; }
+/* Etiquetas de los slide-toggle (texto de los canales) */
+.settings-card .mat-mdc-slide-toggle .mdc-label {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
 
-/* ---- Angular Material quick dark ---- */
-.mat-mdc-card {
-  background: #1a1a1a !important;
+/* Títulos y subtítulos dentro de configuración */
+.settings-card h2,
+.settings-card h3,
+.settings-card .subtitle {
+  color: #ffffff;
+  opacity: 1;
+}
+
+/* Texto de ayuda de intensidad */
+.settings-card .helper-text {
+  color: #ffffff;
+  opacity: 0.85;
+}
+
+/* === FIX GLOBAL DE LEGIBILIDAD EN TEMA DARK === */
+
+/* Labels de Angular Material (slide-toggle, checkboxes, etc.) */
+.mdc-label,
+.mat-mdc-slide-toggle .mdc-label {
+  color: #f5f5f5 !important;
+}
+
+/* Subtítulos, textos secundarios y líneas de listas */
+.mat-mdc-card-subtitle,
+.mat-mdc-card-content,
+.mat-mdc-list-item-title,
+.mat-mdc-list-item-line,
+.mat-mdc-form-field-subscript-wrapper,
+.mat-mdc-form-field-hint,
+.mat-mdc-form-field-error {
   color: #f0f0f0 !important;
-  border-radius: 16px !important;
-  box-shadow: 0 6px 16px rgba(0,0,0,.35);
 }
 
-/* Botones */
-.mdc-button,
+/* Cualquier texto “on surface variant” que Material pinte muy tenue */
+[class*='mat-mdc'] p,
+[class*='mat-mdc'] span,
+[class*='mat-mdc'] label {
+  color: #f2f2f2 !important;
+}
+
+/* ===== RESTAURAR FONDO DARK GLOBAL ===== */
+
+html,
+body {
+  background-color: #000000 !important;
+}
+
+/* Angular Material envuelve la app con esta clase en muchos layouts */
+.mat-app-background,
+app-root {
+  background-color: #000000 !important;
+}
+
+/* ===== BOTONES EN TEMA DARK ===== */
+
+/* Stroked / outlined buttons en general */
 .mat-mdc-outlined-button,
-.mat-mdc-unelevated-button,
-.mat-mdc-raised-button {
-  --mdc-text-button-label-text-color: #e8e8e8;
-  --mdc-outlined-button-label-text-color: #e8e8e8;
-  --mdc-protected-button-label-text-color: #0b0b0b;
+.mat-mdc-stroked-button {
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  --mdc-outlined-button-label-text-color: #ffffff;
+  color: #ffffff !important;
 }
 
-/* Tablas */
-table.mat-mdc-table { background: #141414; color: #eaeaea; width: 100%; }
-.mat-mdc-header-row { background: #1c1c1c; }
-.mat-mdc-header-cell { color: #c7c7c7; font-weight: 600; }
-.mat-mdc-row:nth-child(even) { background: #151515; }
-.mat-mdc-row:nth-child(odd)  { background: #101010; }
-.mat-mdc-cell { border-bottom-color: #2a2a2a; }
-.mat-mdc-header-cell { border-bottom-color: #2a2a2a; }
+/* Botón "View all shipments" del dashboard */
+.recent-shipments-footer button {
+  border-radius: 999px;
+  padding: 6px 28px;
+  font-weight: 500;
+  /* dejamos que Angular Material maneje colores según el tema */
+}
 
-/* Chips de estado */
-mat-chip.in_transit  { background: #2a3d6b !important; color: #e8f0ff !important; }
-mat-chip.delivered   { background: #1f6d2a !important; color: #eaffea !important; }
-mat-chip.registered  { background: #3a3a3a !important; color: #d9d9d9 !important; }
-mat-chip.in_route    { background: #0d4d40 !important; color: #d9fffb !important; }
+/* === OVERRIDES DARK TEMA SENDIFY (GLOBAL) === */
 
-/* Titulares/secciones */
-h1, h2, h3, h4, h5 { color: #eaeaea; margin: 0 0 8px; }
+/* Fondo general negro y texto claro */
+html, body {
+  background-color: #000000 !important;
+  color: #f5f5f5;
+}
 
-/* Separadores elegantes */
+/* Centrar el contenido principal de cada vista .page */
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Tarjetas de Angular Material (dashboard, notificaciones, etc.) */
+.mat-mdc-card {
+  background-color: #111111 !important;  /* 👈 casi negro */
+  color: #f9fafb !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* Botones de Angular Material en modo dark */
+.mat-mdc-button,
+.mat-mdc-raised-button,
+.mat-mdc-outlined-button,
+.mat-mdc-stroked-button,
+.mat-mdc-unelevated-button {
+  color: #f9fafb !important;
+}
+
+/* Inputs y labels de formularios (para que no se pierdan) */
+.mdc-text-field--filled,
+.mdc-text-field--outlined {
+  background-color: #020617 !important; /* negro muy oscuro */
+  color: #e5e7eb !important;
+}
+
+.mat-mdc-form-field .mdc-floating-label,
+.mat-mdc-form-field .mdc-floating-label--float-above {
+  color: #d1d5db !important;
+}
+
+.mat-mdc-form-field .mdc-text-field__input {
+  color: #f9fafb !important;
+}
+
+.mat-mdc-form-field-subscript-wrapper,
+.mat-mdc-form-field-hint-wrapper {
+  color: #9ca3af !important;
+}
+
+/* Listas y subtítulos de Material (ej: notificaciones recientes) */
+.mat-mdc-list-item-title,
+.mat-mdc-list-item-line,
+.mat-mdc-card-subtitle {
+  color: #e5e7eb !important;
+}
+
+/* Tarjetas específicas del centro de notificaciones */
+.n-card,
+.cfg-card,
+.ai-card {
+  background-color: #111111 !important;  /* 👈 igual que las demás */
+  color: #f9fafb !important;
+}
+
+/* Secciones tipo panel que usan la clase .section (formulario de envíos, etc.) */
 .section {
-  letter-spacing: .3px;
-  text-transform: none;
+  background-color: #090909 !important;  /* 👈 negro muy oscuro */
+  color: #f9fafb !important;
 }
 
-/* Botones outline más visibles */
-.mat-mdc-outlined-button {
-  border-color: #3a3a3a !important;
-  color: #eaeaea !important;
+/* Botones primarios del dashboard y vistas */
+button {
+  font-weight: 500;
 }
 
-/* Sombra suave para cards */
-.mat-mdc-card { box-shadow: 0 8px 24px rgba(0,0,0,.35) !important; }
+/* ===========================
+   BOTONES PRINCIPALES (MATERIAL)
+   =========================== */
 
-/* Encabezado tabla */
-.mat-mdc-header-row { background: #1f1f1f; }
-
-/* Separadores elegantes */
-.section {
-  letter-spacing: .3px;
-  text-transform: none;
+/* mat-raised-button, mat-flat-button, etc. */
+.mat-mdc-raised-button,
+.mat-mdc-unelevated-button {
+  border-radius: 999px !important;               /* pill */
+  background-color: #f97316 !important;          /* naranja CTA */
+  color: #0b0b0b !important;                     /* texto oscuro para contraste */
+  font-weight: 500;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
-/* Botones outline más visibles */
-.mat-mdc-outlined-button {
-  border-color: #3a3a3a !important;
-  color: #eaeaea !important;
+/* Hover */
+.mat-mdc-raised-button:hover,
+.mat-mdc-unelevated-button:hover {
+  background-color: #fb923c !important;          /* naranja un poco más claro */
 }
-
-/* Sombra suave para cards */
-.mat-mdc-card { box-shadow: 0 8px 24px rgba(0,0,0,.35) !important; }
-
-/* Encabezado tabla */
-.mat-mdc-header-row { background: #1f1f1f; }
-
-/* Refuerzo global para tablas Material en tema dark */
-.mat-mdc-table .mat-mdc-cell,
-.mat-mdc-table .mat-mdc-footer-cell { color: #ececec !important; }
-.mat-mdc-table .mat-mdc-header-cell { color: #ffffff !important; }
-

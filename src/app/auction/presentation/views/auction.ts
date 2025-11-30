@@ -11,6 +11,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
+import { AuctionStore } from '../../application/auction.store';
+import { AuctionAssembler } from '../../infrastructure/auction-assembler';
+import { Router } from '@angular/router';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { CourierOption } from '../../domain/model/courier-option.entity';
+
 
 @Component({
   standalone: true,
@@ -24,13 +30,21 @@ import { TranslateModule } from '@ngx-translate/core';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatSnackBarModule,
     TranslateModule
   ]
+
 })
 export class AuctionComponent {
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+
+  constructor(
+    private fb: FormBuilder,
+    public auctionStore: AuctionStore,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {
     this.form = this.fb.group({
       origin: ['', Validators.required],
       destination: ['', Validators.required],
@@ -43,14 +57,27 @@ export class AuctionComponent {
     });
   }
 
+
+  onSelectCourier(option: CourierOption): void {
+    this.auctionStore.selectCourier(option);
+
+    this.snackBar.open(
+      `Your shipment will be sent with courier ${option.name}!`,
+      'OK',
+      { duration: 3000 }
+    );
+
+    this.router.navigate(['/dashboard']);
+  }
+
+
   onSubmit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
 
-    // Por ahora solo mostramos por consola.
-    // Más adelante aquí llamaremos al backend /api/v1/auction-requests.
-    console.log('Auction request payload', this.form.value);
+    const payload = AuctionAssembler.toCreatePayload(this.form.value);
+    this.auctionStore.createAuctionRequest(payload);
   }
 }

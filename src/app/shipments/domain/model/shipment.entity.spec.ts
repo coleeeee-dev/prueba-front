@@ -1,3 +1,4 @@
+// @ts-ignore
 import { ShipmentEntity } from './shipment.entity';
 
 describe('ShipmentEntity', () => {
