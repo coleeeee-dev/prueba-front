@@ -14,6 +14,8 @@ import { LanguageSwitcherComponent } from '../../../../shared/presentation/compo
 import { dashboardStore } from '../../../application/dashboard.store';
 import { ShipmentsApi } from '../../../../shipments/infrastructure/shipments-api';
 import { authStore } from '../../../../auth/application/auth.store';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   standalone: true,
@@ -22,6 +24,8 @@ import { authStore } from '../../../../auth/application/auth.store';
     CommonModule,
     RouterModule,
     MatCardModule,
+    MatButtonModule,
+    MatIconModule,
     TranslateModule,
     KpiCardComponent,
     QuickActionsComponent,
@@ -29,6 +33,7 @@ import { authStore } from '../../../../auth/application/auth.store';
     EpicCardComponent,
     LanguageSwitcherComponent
   ],
+
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']
 })

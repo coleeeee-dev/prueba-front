@@ -1,0 +1,55 @@
+.auction-page {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.auction-card,
+.offers-card {
+  padding: 24px;
+}
+
+.subtitle {
+  margin-top: 4px;
+  margin-bottom: 16px;
+  color: #cfcfcf;
+}
+
+.auction-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.dims-row {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.full-width {
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .auction-page {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row,
+  .dims-row {
+    grid-template-columns: 1fr;
+  }
+}

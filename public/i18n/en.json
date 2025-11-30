@@ -13,6 +13,7 @@
     "liveStats": "LIVE STATS",
     "quickActions": "QUICK ACTIONS",
     "recentShipments": "RECENT SHIPMENTS",
+    "dashboard.viewAllShipments": "View all",
     "kpi": {
       "activeShipments": "Active Shipments",
       "inTransit": "In Transit",
@@ -29,20 +30,21 @@
       "notifications": "Notifications",
       "notifications.desc": "Manage alerts & settings"
     },
+    "viewAllShipments": "View all shipments",
+    "featuresTitle": "What you can do in SENDIFY",
     "reports": {
-      "title": "Reports & Analytics",
-      "l1": "Performance reports",
-      "l2": "CSV & PDF export",
-      "l3": "Delivery time analysis",
-      "l4": "Cost metrics per period"
+      "title": "What you can do in SENDIFY",
+      "l1": "Create and register domestic shipments",
+      "l2": "Track the status of your packages in real time",
+      "l3": "Compare estimated rates across couriers",
+      "l4": "Review your shipment history"
     },
-    "api": {
-      "title": "RESTful API",
-      "l1": "POST /shipments - Create shipments",
-      "l2": "GET /tracking - Check statuses",
-      "l3": "GET /rates - Compare prices",
-      "l4": "Full documentation"
+    "auction": {
+      "title": "Shipment auction (coming soon)",
+      "description": "Publish your shipment details and let couriers compete to offer you the best price.",
+      "cta": "Go to auction"
     }
+
   },
   "shipment": {
     "code": "Code",
@@ -124,6 +126,23 @@
     "progress": "Progress bar",
     "notFound": "No shipment found with code: {{code}}",
     "tryAgain": "Try again"
+  },
+
+  "auction": {
+    "title": "Shipment auction",
+    "subtitle": "Fill in your package details and let couriers compete to offer you the best price.",
+    "origin": "Origin",
+    "destination": "Destination",
+    "weightKg": "Weight (kg)",
+    "declaredValue": "Declared value",
+    "length": "Length",
+    "width": "Width",
+    "height": "Height",
+    "description": "Description / contents",
+    "submit": "Publish auction",
+    "offersTitle": "Courier offers",
+    "offersPlaceholder": "Once you publish your auction, the courier proposals will appear here."
   }
+
 
 }

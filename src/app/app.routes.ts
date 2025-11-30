@@ -70,6 +70,15 @@ export const routes: Routes = [
   },
 
   {
+    path: 'auction',
+    loadChildren: () =>
+      import('./auction/presentation/auction.routes').then(
+        (m) => m.AUCTION_ROUTES
+      )
+  },
+
+
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: 'signup'

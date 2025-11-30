@@ -8,6 +8,7 @@
   },
   "dashboard": {
     "title": "Dashboard SENDIFY",
+    "dashboard.viewAllShipments": "Ver todos",
     "subtitle": "Gestiona tus envíos desde un lugar",
     "goHome": "Cerrar Sesion",
     "liveStats": "ESTADÍSTICAS EN VIVO",
@@ -29,19 +30,19 @@
       "notifications": "Notificaciones",
       "notifications.desc": "Gestiona alertas y configuración"
     },
+    "viewAllShipments": "Ver todos los envíos",
+    "featuresTitle": "Lo que puedes hacer en SENDIFY",
     "reports": {
-      "title": "Reportes y Analítica",
-      "l1": "Reportes de desempeño",
-      "l2": "Exportación en CSV y PDF",
-      "l3": "Análisis de tiempos de entrega",
-      "l4": "Métricas de costos por período"
+      "title": "Lo que puedes hacer en SENDIFY",
+      "l1": "Crear y registrar envíos nacionales",
+      "l2": "Rastrear el estado de tus paquetes en tiempo real",
+      "l3": "Comparar tarifas estimadas entre distintos couriers",
+      "l4": "Consultar el historial de envíos realizados"
     },
-    "api": {
-      "title": "API RESTful",
-      "l1": "POST /envíos - Crear envíos",
-      "l2": "GET /tracking - Consultar estados",
-      "l3": "GET /tarifas - Comparar precios",
-      "l4": "Documentación completa"
+    "auction": {
+      "title": "Subasta de envíos (próximamente)",
+      "description": "Publica los detalles de tu envío y deja que los couriers compitan por ofrecerte el mejor precio.",
+      "cta": "Ir a la subasta"
     }
   },
   "shipment": {
@@ -124,6 +125,23 @@
     "progress": "Barra de progreso",
     "notFound": "No se encontró ningún envío con el código: {{code}}",
     "tryAgain": "Intentar de nuevo"
+  },
+
+  "auction": {
+    "title": "Subasta de envíos",
+    "subtitle": "Completa los datos de tu paquete y deja que los couriers compitan por ofrecerte el mejor precio.",
+    "origin": "Origen",
+    "destination": "Destino",
+    "weightKg": "Peso (kg)",
+    "declaredValue": "Valor declarado",
+    "length": "Largo",
+    "width": "Ancho",
+    "height": "Alto",
+    "description": "Descripción / contenido",
+    "submit": "Publicar subasta",
+    "offersTitle": "Ofertas de couriers",
+    "offersPlaceholder": "Cuando publiquemos tu subasta, aquí verás las propuestas de los couriers."
   }
+
 
 }

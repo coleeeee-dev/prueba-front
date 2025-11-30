@@ -20,3 +20,38 @@
 /* Responsivo */
 @media (max-width: 1000px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px)  { .kpi-grid, .epic-grid { grid-template-columns: 1fr; } }
+
+/* Botón de logout (icono + texto) */
+.logout-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Footer de la tabla de envíos recientes */
+.recent-shipments-footer {
+  display: flex;
+  justify-content: center;  /* <--- aquí el cambio */
+  margin-top: 8px;
+  width: 100%;
+}
+
+.view-all-btn {
+  padding-inline: 24px;
+}
+.auction-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auction-card .head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.auction-text {
+  margin: 0;
+  color: #cfcfcf;
+}

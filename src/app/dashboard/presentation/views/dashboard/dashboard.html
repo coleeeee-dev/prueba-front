@@ -8,16 +8,18 @@
       <small>{{ 'dashboard.subtitle' | translate }}</small>
     </div>
     <span class="spacer"></span>
+
+
     <app-language-switcher></app-language-switcher>
     <button
-      mat-stroked-button
-      color="primary"
+      mat-raised-button
+      color="warn"
       type="button"
-      class="ml-2"
+      class="logout-btn ml-2"
       (click)="onLogout()">
-      {{ 'dashboard.goHome' | translate }}
+      <mat-icon>logout</mat-icon>
+      <span>{{ 'dashboard.goHome' | translate }}</span>
     </button>
-
 
   </header>
 
@@ -36,29 +38,41 @@
 
   <div class="recent-shipments-footer">
     <button
-      mat-stroked-button
+      mat-raised-button
       color="primary"
-      routerLink="/shipments">
-      Ver todos los envíos
+      routerLink="/shipments"
+      class="view-all-btn">
+      {{ 'dashboard.viewAllShipments' | translate }}
     </button>
   </div>
 
 
-  <h2 class="section">EPIC CARDS</h2>
   <div class="epic-grid">
-    <app-epic-card icon="insights" [titleKey]="'dashboard.reports.title' | translate"
+    <!-- Lo que puedes hacer en Sendify -->
+    <app-epic-card icon="insights" [titleKey]="'dashboard.reports.title'"
                    [lines]="[
-        ('dashboard.reports.l1'|translate),
-        ('dashboard.reports.l2'|translate),
-        ('dashboard.reports.l3'|translate),
-        ('dashboard.reports.l4'|translate)
-      ]" />
-    <app-epic-card icon="api" [titleKey]="'dashboard.api.title' | translate"
-                   [lines]="[
-        ('dashboard.api.l1'|translate),
-        ('dashboard.api.l2'|translate),
-        ('dashboard.api.l3'|translate),
-        ('dashboard.api.l4'|translate)
-      ]" />
+    'dashboard.reports.l1',
+    'dashboard.reports.l2',
+    'dashboard.reports.l3',
+    'dashboard.reports.l4'
+  ]" />
+
+    <!-- Placeholder de la subasta -->
+    <mat-card class="epic auction-card">
+      <div class="head">
+        <mat-icon>gavel</mat-icon>
+        <h3>{{ 'dashboard.auction.title' | translate }}</h3>
+      </div>
+      <p class="auction-text">
+        {{ 'dashboard.auction.description' | translate }}
+      </p>
+      <button
+        mat-raised-button
+        color="accent"
+        type="button"
+        routerLink="/auction">
+        {{ 'dashboard.auction.cta' | translate }}
+      </button>
+    </mat-card>
   </div>
 </section>
