@@ -40,7 +40,7 @@
       "l4": "Consultar el historial de envíos realizados"
     },
     "auction": {
-      "title": "Subasta de envíos (próximamente)",
+      "title": "Subasta de envíos",
       "description": "Publica los detalles de tu envío y deja que los couriers compitan por ofrecerte el mejor precio.",
       "cta": "Ir a la subasta"
     }

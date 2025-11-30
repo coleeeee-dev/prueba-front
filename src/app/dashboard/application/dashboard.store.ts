@@ -14,22 +14,40 @@ export const dashboardStore = {
   load(api: ShipmentsApi) {
     this.loading.set(true);
 
-    // KPIs mock (igual que antes)
-    this.kpis.set([
-      new Kpi('Envíos Activos', 47, 12, 'local_shipping'),
-      new Kpi('En Tránsito', 23, 5, 'route'),
-      new Kpi('Entregados Hoy', 15, 18, 'task_alt'),
-      new Kpi('Alertas Pendientes', 3, -25, 'warning')
-    ]);
-
     api.getAll().subscribe({
       next: (resp: ShipmentBackendResponse[]) => {
         const entities = ShipmentsAssembler.toEntityList(resp);
-        // 👇 solo mostramos los últimos 5 en el dashboard
+
+        // === Cálculo de KPIs ===
+        const activeCount = entities.filter(
+          s => s.status !== 'delivered'
+        ).length;
+
+        const inTransitCount = entities.filter(
+          s => s.status === 'in_transit'
+        ).length;
+
+        const deliveredCount = entities.filter(
+          s => s.status === 'delivered'
+        ).length;
+
+        // Por ahora dejamos cambios (%) mockeados
+        const kpis: Kpi[] = [
+          new Kpi('Envíos Activos', activeCount, 12, 'local_shipping'),
+          new Kpi('En Tránsito', inTransitCount, 5, 'travel_explore'),
+          new Kpi('Entregados', deliveredCount, 18, 'check_circle'),
+          new Kpi('Alertas Pendientes', 0, -25, 'warning')
+        ];
+
+        this.kpis.set(kpis);
+
+        // Solo mostramos los últimos 5 en el dashboard
         this.recentShipments.set(entities.slice(0, 5));
+
         this.loading.set(false);
       },
       error: () => {
+        this.kpis.set([]);
         this.recentShipments.set([]);
         this.loading.set(false);
       }

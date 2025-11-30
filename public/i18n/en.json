@@ -40,7 +40,7 @@
       "l4": "Review your shipment history"
     },
     "auction": {
-      "title": "Shipment auction (coming soon)",
+      "title": "Shipment auction",
       "description": "Publish your shipment details and let couriers compete to offer you the best price.",
       "cta": "Go to auction"
     }

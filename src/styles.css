@@ -178,3 +178,30 @@ button {
 .mat-mdc-unelevated-button:hover {
   background-color: #fb923c !important;          /* naranja un poco más claro */
 }
+
+/* ==== FIX: panel de selects en tema oscuro ==== */
+
+/* Panel flotante del mat-select */
+.mat-mdc-select-panel {
+  background-color: #050505 !important;   /* fondo negro */
+  color: #ffffff !important;              /* texto blanco */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+}
+
+/* Cada opción del select */
+.mat-mdc-option.mdc-list-item {
+  background-color: transparent !important;
+  color: #ffffff !important;
+}
+
+/* Opción seleccionada / activa / hover */
+.mat-mdc-option.mdc-list-item.mdc-list-item--selected,
+.mat-mdc-option.mdc-list-item.mdc-list-item--activated,
+.mat-mdc-option.mdc-list-item:hover {
+  background-color: #1f2933 !important;   /* gris oscuro para resaltar */
+}
+
+/* Quita cualquier transparencia rara en el overlay */
+.cdk-overlay-pane {
+  opacity: 1 !important;
+}
